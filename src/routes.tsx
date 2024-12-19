@@ -12,7 +12,7 @@ import MessagePage from "./app/components/messagePage/MessagePage"
 const Layout = () => (
   <>
     <NavBar />
-    <div style={{ padding: "20px" }}>
+    <div>
       <Outlet />
     </div>
   </>
