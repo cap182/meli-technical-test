@@ -8,6 +8,7 @@ import LoadingScreen from "../../components/loadingScreen/LoadingScreen"
 import { QueriesState } from "../../interfaces/queryInterfaces"
 import MessagePage from "../../components/messagePage/MessagePage"
 import styles from "./styles.module.css";
+import { MESSAGES } from "../../constants/constants"
 
 
 function CharacterInfo() {
@@ -35,11 +36,11 @@ function CharacterInfo() {
   if (isLoading) return <LoadingScreen />
   if (error) {
     if (error && "status" in error && error.status === 404) {
-      return <MessagePage message="Character not found" />
+      return <MessagePage message={MESSAGES.ERROR.NOT_FOUND} />
     }
-    return <MessagePage message="Something went wrong" />
+    return <MessagePage message={MESSAGES.ERROR.GENERIC} />
   }
-  if (!characterData) return <MessagePage message="Character don't exists" />
+  if (!characterData) return <MessagePage message={MESSAGES.ERROR.CHARACTER_NOT_FOUND} />
 
   return (
     <div className={styles.container}>
