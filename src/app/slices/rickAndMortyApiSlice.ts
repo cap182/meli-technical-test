@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import {
   Character,
   CharactersResponse,
+  Episode,
 } from "../interfaces/characterInterfaces"
 import { BASE_URLS } from "../constants/constants"
 
@@ -28,6 +29,11 @@ export const rickAndMortyApiSlice = createApi({
     getCharacterById: builder.query<Character, number>({
       query: id => `/character/${id}`,
     }),
+    getEpisodesByIds: builder.query<Episode[], string>({
+      query: (ids) => `/episode/${ids}`,
+      transformResponse: (response: Episode | Episode[]) =>
+        Array.isArray(response) ? response : [response],
+    }),
   }),
 })
 
@@ -35,4 +41,5 @@ export const {
   useGetCharactersQuery,
   useGetCharactersByIdsQuery,
   useGetCharacterByIdQuery,
+  useGetEpisodesByIdsQuery,
 } = rickAndMortyApiSlice
