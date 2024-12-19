@@ -1,0 +1,17 @@
+/* Contenedor principal para las tarjetas */
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  /* Contenedor de los botones de paginación */
+  .paginationContainer {
+    margin-top: 20px;
+  }
+  
+  /* Estilos para el span que muestra la página actual */
+  .pageIndicator {
+    margin: 0 10px;
+  }
+  

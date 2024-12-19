@@ -1,0 +1,20 @@
+/* Contenedor principal */
+.container {
+  padding: 20px;
+}
+
+/* Imagen del personaje */
+.characterImage {
+  width: 300px;
+  border-radius: 8px;
+}
+
+/* Sección de información */
+.infoText {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.infoLabel {
+  font-weight: bold;
+}

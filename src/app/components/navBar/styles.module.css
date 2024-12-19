@@ -1,0 +1,24 @@
+/* Contenedor principal de la barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #282c34;
+  color: white;
+}
+
+/* Contenedor de los enlaces */
+.links {
+  display: flex;
+  gap: 20px;
+}
+
+/* Estilos para los enlaces */
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
