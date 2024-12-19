@@ -3,16 +3,27 @@ import {
   Character,
   CharactersResponse,
 } from "../interfaces/characterInterfaces"
+import { BASE_URLS } from "../constants/constants"
 
 export const rickAndMortyApiSlice = createApi({
   reducerPath: "rickAndMortyApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://rickandmortyapi.com/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URLS.RICK_AND_MORTY_API }),
   endpoints: builder => ({
-    getCharacters: builder.query<CharactersResponse, number>({
-      query: (page = 1) => `/character?page=${page}`,
+    getCharacters: builder.query<CharactersResponse,{ page: number; name?: string; species?: string; status?: string }>({
+      query: ({ page, name, species, status }) => {
+        const params = new URLSearchParams({
+          page: page.toString(),
+          ...(name && { name }),
+          ...(species && { species }),
+          ...(status && { status }),
+        })
+        return `/character?${params.toString()}`
+      },
     }),
     getCharactersByIds: builder.query<Character[], number[]>({
       query: ids => `/character/${ids.join(",")}`,
+      transformResponse: (response: Character | Character[]) =>
+        Array.isArray(response) ? response : [response],
     }),
     getCharacterById: builder.query<Character, number>({
       query: id => `/character/${id}`,
