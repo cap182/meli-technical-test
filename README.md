@@ -1,27 +1,21 @@
-# vite-template-redux
+# MELI TECH TEST
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+Este proyecto fue construido a partir de un template de redux, se creo usando vite:
 
 ```sh
 npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
 ```
 
-## Goals
+Al usar vite es necesaria una version de NodeJs superior a la 18, en pruebas locales se utilizo la versión 20.3.1 de Nodejs
 
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
+Para instalar las dependecias y las dev-dependencias del proyecto es necesario ejecutar:
 
-## Scripts
+```sh
+npm install
+```
 
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
+Y para ejecutar el proyecto 
 
-## Inspiration
-
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+```sh
+npm run start
+```
