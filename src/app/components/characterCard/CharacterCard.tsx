@@ -9,6 +9,7 @@ import styles from "./styles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faFaceSmile } from "@fortawesome/free-regular-svg-icons"
 import { faQuestion, faSkull, faHeart as faSolidHearth } from "@fortawesome/free-solid-svg-icons"
+import StatusInfo from "../statusInfo/StatusInfo"
 
 
 interface CharacterCardProps {
@@ -41,12 +42,6 @@ const CharacterCard = ({
     }
   }
 
-  const statusIcon = () =>{
-    if (status.toLowerCase()==="alive") return faFaceSmile
-    if (status.toLowerCase()==="dead") return faSkull
-    return faQuestion
-  }
-
   return (
     <div className={styles.card}>
       <Link to={`/character/${id}`} className={styles.cardLink}>
@@ -56,12 +51,8 @@ const CharacterCard = ({
           height={200}
           placeholderSrc={placeholder}
           className={styles.characterImage}
-        />
-        <FontAwesomeIcon className={styles.statusIcon} icon={statusIcon()} />
-        <h3 className={styles.characterName}>{name}</h3>
-      <p className={styles.characterStatus}>
-        {status} - {species}
-      </p>
+        />    
+      <StatusInfo name={name} status={status} species={species}/>
       </Link>
       <button
         onClick={toggleFavorite}

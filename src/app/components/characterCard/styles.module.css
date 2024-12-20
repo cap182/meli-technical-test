@@ -85,17 +85,3 @@ p {
     inset 5px 5px 13px #bdbdbd,
     inset -5px -5px 13px #ffffff;
 }
-
-.characterName{
-  margin-bottom: 0px;
-}
-.characterStatus{
-  color: #555;
-  font-size: small;
-  margin-top: 0px;
-  margin-bottom: 10px;
-}
-
-.statusIcon{
-  margin-top: 10px;
-}

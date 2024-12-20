@@ -35,8 +35,12 @@ const Paginator = ({
       pages.push(currentPage - 1)
     }
     pages.push(currentPage)
+
     if (currentPage < totalPages) {
-      pages.push(currentPage + 1)
+      if (currentPage + 1 < totalPages){
+        pages.push(currentPage + 1)
+
+      }
     }
 
     if (currentPage + 2 < totalPages) {
@@ -79,8 +83,6 @@ const Paginator = ({
           </span>
         ),
       )}
-
-      {/* Botón Siguiente */}
       <button
         className={styles.paginationButton}
         disabled={currentPage >= totalPages}

@@ -10,11 +10,20 @@
   background-color: white;
   border-radius: 35px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding-top: 35px;
+  padding-top: 0;
   max-width: 70%;
   width: 100%;
   text-align: center;
   height: fit-content;
+  overflow: hidden;
+}
+
+.cardHeader {
+  padding-top: 100px;
+  background-color: black;
+  height: 50px;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
 }
 
 .characterImage {
@@ -22,27 +31,68 @@
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto;
+  margin: -75px auto 0;
   border: 4px solid #e0e0e0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin: 20px 0 10px;
-  color: #333;
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 20px;
+  align-items: flex-start;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.infoColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.infoCenter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .infoText {
   font-size: 1rem;
   margin: 5px 0;
   color: #555;
+  font-size: small;
 }
 
 .infoLabel {
   font-weight: bold;
-  color: #333;
+  color: #444;
+  font-size: small;
+}
+
+@media (max-width: 768px) {
+  .infoContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .infoCenter {
+    order: -1;
+  }
+
+  .infoColumn {
+    width: 100%;
+  }
+  .container {
+    padding: 0px;
+  }
+  .episodesList {
+    padding: 0px;
+  }
 }
 
 .episodes {
@@ -51,7 +101,7 @@
 
 .episodesTitle {
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #333;
   cursor: pointer;
   text-align: center;
@@ -65,6 +115,9 @@
   background-color: #212121;
   border-bottom-left-radius: 35px;
   border-bottom-right-radius: 35px;
+}
+.episodesList {
+  list-style-type: none;
 }
 
 .episodesList li {

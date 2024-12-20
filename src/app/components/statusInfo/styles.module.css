@@ -1,0 +1,13 @@
+.characterName{
+    margin-bottom: 0px;
+  }
+  .characterStatus{
+    color: #555;
+    font-size: small;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  
+  .statusIcon{
+    margin-top: 10px;
+  }
