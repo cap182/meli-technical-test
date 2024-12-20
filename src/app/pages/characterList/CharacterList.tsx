@@ -15,23 +15,21 @@ const CharacterList = () => {
 
   const { data, error, isLoading } = useGetCharactersQuery({ page, ...filters })
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [page]);
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [page])
 
   if (isLoading) return <LoadingScreen />
   if (error) return <MessagePage message={MESSAGES.ERROR.GENERIC} />
 
-
   return (
-    <div>
+    <>
       <div className={styles.searchBarContainer}>
-      <SearchBar
-        onSearch={newFilters => {
-          setFilters(newFilters)
-          setPage(1) // Resetear la paginación al buscar
-        }}
-      />
-
+        <SearchBar
+          onSearch={newFilters => {
+            setFilters(newFilters)
+            setPage(1) // Resetear la paginación al buscar
+          }}
+        />
       </div>
       <div className={styles.cardsContainer}>
         {data?.results.map(character => (
@@ -46,18 +44,25 @@ const CharacterList = () => {
         ))}
       </div>
       <div className={styles.searchBarContainer}>
-
-      <div className={styles.paginationContainer}>
-        <button className={styles.paginationButton} disabled={page <= 1} onClick={() => setPage(page - 1)}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-        </button>
-        <span className={styles.pageIndicator}>{page}</span>
-        <button className={styles.paginationButton} disabled={!data?.info.next} onClick={() => setPage(page + 1)}>
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        <div className={styles.paginationContainer}>
+          <button
+            className={styles.paginationButton}
+            disabled={page <= 1}
+            onClick={() => setPage(page - 1)}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </button>
+          <span className={styles.pageIndicator}>{page}</span>
+          <button
+            className={styles.paginationButton}
+            disabled={!data?.info.next}
+            onClick={() => setPage(page + 1)}
+          >
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
+        </div>
       </div>
-      </div>
-    </div>
+    </>
   )
 }
 

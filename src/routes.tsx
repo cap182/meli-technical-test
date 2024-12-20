@@ -12,9 +12,9 @@ import MessagePage from "./app/components/messagePage/MessagePage"
 const Layout = () => (
   <>
     <NavBar />
-    <div>
+    <>
       <Outlet />
-    </div>
+    </>
   </>
 )
 

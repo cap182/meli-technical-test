@@ -1,8 +1,12 @@
-/* Contenedor de la barra de búsqueda */
 .searchBarContainer {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  align-content: center;
+  gap: 10px; 
   width: max-content;
   padding: 15px;
-  text-align: center; /* Centra los botones horizontalmente */
+  text-align: center;
   border-radius: 34px;
   background: #ffffff;
   box-shadow:
@@ -10,21 +14,20 @@
     -11px -11px 40px #ffffff;
 }
 
-.searchBarContainer input{
-  /* padding-left: 10px; */
+.searchBarContainer input {
   margin-right: 20px;
   border-radius: 20px;
   padding: 8px;
   border: 1px solid gray;
 }
-.searchBarContainer select{
+
+.searchBarContainer select {
   border-radius: 20px;
-  /* padding-left: 10px; */
   margin-right: 20px;
   padding: 8px;
-  border-radius: 20px;
   border: 1px solid gray;
 }
+
 
 .searchButton {
   border: 0px;
@@ -43,4 +46,21 @@
   box-shadow:
     8px 8px 16px #d1d1d1,
     -8px -8px 16px #ffffff;
+}
+
+@media (max-width: 768px) {
+  .searchBarContainer {
+    flex-direction: column; 
+    align-items: stretch; 
+  }
+
+  .searchBarContainer input,
+  .searchBarContainer select {
+    margin-right: 0; 
+    width: 100%;
+  }
+
+  .searchButton {
+    align-self: center; /* Centra el botón */
+  }
 }
