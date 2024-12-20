@@ -1,24 +1,47 @@
-/* Contenedor principal de la barra de navegación */
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #282c34;
-  color: white;
+  padding: 30px;
+  background-color: #ffe600;
+  color: rgb(0, 0, 0);
 }
 
-/* Contenedor de los enlaces */
 .links {
   display: flex;
   gap: 20px;
 }
 
-/* Estilos para los enlaces */
 .link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
-  color: white;
+  color: #000000;
+  border-radius: 51px;
+  background: #ffe600;
+  box-shadow:
+    9px 9px 17px #a89800,
+    -9px -9px 17px #ffff00;
+  padding: 10px 15px;
 }
 
 .link:hover {
-  text-decoration: underline;
+  border-radius: 51px;
+  background: #ffe600;
+  box-shadow:
+    inset 9px 9px 17px #a89800,
+    inset -9px -9px 17px #ffff00;
+}
+
+.linkText {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.disabled {
+  pointer-events: none;
+  color: #a0a0a0;
+  box-shadow: none;
+  background: #ffe600;
 }

@@ -96,7 +96,7 @@ function CharacterInfo() {
             className={styles.episodesTitle}
             onClick={() => setShowEpisodes((prev) => !prev)}
           >
-            Episodes {showEpisodes ? "▼" : "►"}
+            Episodes {showEpisodes ? "-" : "+"}
           </h2>
           {showEpisodes && (
             <div className={styles.episodesBox}>

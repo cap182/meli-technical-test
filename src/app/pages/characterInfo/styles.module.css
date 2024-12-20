@@ -2,21 +2,22 @@
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   min-height: 100vh;
   background-color: #f9f9f9;
-  padding: 20px;
+  padding: 2rem;
 }
 
 /* Tarjeta principal */
 .card {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 35px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 600px;
+  padding-top: 35px;
+  max-width: 70%;
   width: 100%;
   text-align: center;
+  height: fit-content;
 }
 
 /* Imagen circular del personaje */
@@ -63,18 +64,22 @@
   text-align: center;
 }
 
-.episodesList {
+.episodesBox {
+  color: #ffffff;
   list-style: none;
-  padding: 0;
+  padding: 20px;
   margin-top: 10px;
+  background-color: #212121;
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
 }
 
 .episodesList li {
-  margin-bottom: 8px;
+  margin-top: 8px;
   font-size: 0.9rem;
-  color: #555;
+  color: #e2e2e2;
 }
 
 .episodesList li strong {
-  color: #333;
+  color: #e2e2e2;
 }

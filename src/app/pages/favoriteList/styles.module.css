@@ -1,7 +1,4 @@
-/* Contenedor principal */
-.container {
-  padding: 20px;
-}
+
 
 /* Título de la sección */
 .title {
@@ -10,9 +7,20 @@
   margin-bottom: 20px;
 }
 
-/* Contenedor de las tarjetas */
 .cardsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBarContainer{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* (Opcional) Centrar verticalmente si es necesario */
+  width: 100%; 
 }

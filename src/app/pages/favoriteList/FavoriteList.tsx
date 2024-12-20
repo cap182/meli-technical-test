@@ -14,47 +14,59 @@ const FavoriteList = () => {
     (state: RootState) => state.favorites.favoriteIds,
   )
 
-  if (favoriteIds.length === 0) {
-    return <MessagePage message={MESSAGES.EMPTY_FAVORITES} />
-  }
-
   const [filters, setFilters] = useState({
     name: "",
     species: "",
     status: "",
   })
 
-  const { data, isLoading, error } = useGetCharactersByIdsQuery(favoriteIds)
+  const { data, isLoading, error } = useGetCharactersByIdsQuery(
+     favoriteIds, {
+      skip: !favoriteIds.length,
+     }
+  )
+
   if (isLoading) return <LoadingScreen />
+
   if (error) return <MessagePage message={MESSAGES.ERROR.GENERIC} />
 
-  const filteredData = data?.filter(character => {
+  if (favoriteIds.length === 0) {
+    return <MessagePage message={MESSAGES.EMPTY_FAVORITES} />
+  }
+
+  const characters = Array.isArray(data) ? data : [data];
+
+  const filteredData = characters?.filter((character) => {
+    if (!character) return false;
+  
     const matchesName = filters.name
       ? character.name.toLowerCase().includes(filters.name.toLowerCase())
-      : true
+      : true;
     const matchesSpecies = filters.species
       ? character.species.toLowerCase().includes(filters.species.toLowerCase())
-      : true
+      : true;
     const matchesStatus = filters.status
       ? character.status.toLowerCase() === filters.status.toLowerCase()
-      : true
-
-    return matchesName && matchesSpecies && matchesStatus
-  })
+      : true;
+  
+    return matchesName && matchesSpecies && matchesStatus;
+  });
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>My Favorites</h1>
-      <SearchBar
-        onSearch={newFilters => {
-          setFilters(newFilters)
-        }}
-      />
+    <>
+      <div className={styles.searchBarContainer}>
+        <SearchBar
+          onSearch={newFilters => {
+            setFilters(newFilters)
+          }}
+        />
+      </div>
       {filteredData?.length === 0 ? (
         <MessagePage message={MESSAGES.ERROR.CHARACTER_NOT_FOUND} />
       ) : (
         <div className={styles.cardsContainer}>
           {filteredData?.map(character => (
+             !character ? null :
             <CharacterCard
               key={character.id}
               id={character.id}
@@ -66,7 +78,7 @@ const FavoriteList = () => {
           ))}
         </div>
       )}
-    </div>
+    </>
   )
 }
 

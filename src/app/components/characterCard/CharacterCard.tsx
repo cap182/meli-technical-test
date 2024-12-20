@@ -6,6 +6,9 @@ import { Link } from "react-router-dom"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import placeholder from "./../../assets/placeholder.png"
 import styles from "./styles.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons"
+import { faHeart as faSolidHearth } from "@fortawesome/free-solid-svg-icons"
 
 
 interface CharacterCardProps {
@@ -44,6 +47,7 @@ const CharacterCard = ({
         <LazyLoadImage
           src={image}
           alt={name}
+          height={200}
           placeholderSrc={placeholder}
           className={styles.characterImage}
         />
@@ -58,7 +62,7 @@ const CharacterCard = ({
           isFavorite ? styles.isFavorite : ""
         }`}
       >
-        {isFavorite ? "Remove Favorite" : "Add Favorite"}
+        {isFavorite ? <FontAwesomeIcon icon={faSolidHearth} /> : <FontAwesomeIcon icon={faHeart} />}
       </button>
     </div>
   );

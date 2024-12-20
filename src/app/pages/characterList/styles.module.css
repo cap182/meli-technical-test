@@ -1,17 +1,56 @@
 /* Contenedor principal para las tarjetas */
 .cardsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  /* Contenedor de los botones de paginación */
-  .paginationContainer {
-    margin-top: 20px;
-  }
-  
-  /* Estilos para el span que muestra la página actual */
-  .pageIndicator {
-    margin: 0 10px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor de los botones de paginación */
+.paginationContainer {
+  width: max-content;
+  padding: 15px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  text-align: center; /* Centra los botones horizontalmente */
+  border-radius: 34px;
+  background: #ffffff;
+  box-shadow:
+    11px 11px 40px #bdbdbd,
+    -11px -11px 40px #ffffff;
+}
+
+/* Estilos para el span que muestra la página actual */
+.pageIndicator {
+  margin: 0 10px;
+}
+
+.paginationButton {
+  border: 0px;
+  height: 35px;
+  width: 35px;
+  border-radius: 40px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow:
+    3px 3px 6px #b3b3b3,
+    -3px -3px 6px #ffffff;
+}
+
+.paginationButton:hover {
+  border-radius: 51px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow:
+    8px 8px 16px #d1d1d1,
+    -8px -8px 16px #ffffff;
+}
+
+.searchBarContainer{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* (Opcional) Centrar verticalmente si es necesario */
+  width: 100%; 
+}

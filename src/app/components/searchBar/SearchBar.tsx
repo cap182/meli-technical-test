@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import styles from "./styles.module.css";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 interface SearchBarProps {
   onSearch: (filters: { name: string; species: string; status: string }) => void;
@@ -14,43 +18,33 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   };
 
   return (
-    <div style={{ marginBottom: "20px", display: "flex", gap: "10px" }}>
+    <div className={styles.searchBarContainer}>
       <input
         type="text"
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        style={{ padding: "5px", borderRadius: "4px", border: "1px solid gray" }}
+        
       />
       <input
         type="text"
         placeholder="Species"
         value={species}
         onChange={(e) => setSpecies(e.target.value)}
-        style={{ padding: "5px", borderRadius: "4px", border: "1px solid gray" }}
+        
       />
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-        style={{ padding: "5px", borderRadius: "4px", border: "1px solid gray" }}
+        
       >
         <option value="">All</option>
         <option value="alive">Alive</option>
         <option value="dead">Dead</option>
         <option value="unknown">Unknown</option>
       </select>
-      <button
-        onClick={handleSearch}
-        style={{
-          padding: "5px 10px",
-          borderRadius: "4px",
-          backgroundColor: "#007BFF",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        Search
+      <button onClick={handleSearch} className={styles.searchButton}>
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>
     </div>
   );

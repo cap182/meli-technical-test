@@ -1,10 +1,21 @@
 /* Contenedor principal */
 .card {
-  border: 1px solid gray;
-  border-radius: 8px;
-  padding: 10px;
+  padding-bottom: 20px;
   text-align: center;
   width: 200px;
+  border-radius: 35px;
+  background: #ffffff;
+  box-shadow:
+    11px 11px 27px #bdbdbd,
+    -11px -11px 27px #ffffff;
+}
+
+.card:hover {
+  border-radius: 34px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow:
+    11px 11px 40px #bdbdbd,
+    -11px -11px 40px #ffffff;
 }
 
 /* Estilo del enlace */
@@ -16,24 +27,37 @@
 /* Imagen del personaje */
 .characterImage {
   width: 100%;
-  border-radius: 8px;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
 }
 
 /* Botón de favorito */
 .favoriteButton {
-  background-color: lightgray;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: red;
+  border: 0px;
+  height: 35px;
+  width: 35px;
+  border-radius: 40px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow:
+    3px 3px 6px #b3b3b3,
+    -3px -3px 6px #ffffff;
 }
 
 .favoriteButton.isFavorite {
-  background-color: red;
+  color: red;
+  border-radius: 40px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow:
+    4px 4px 8px #b3b3b3,
+    -4px -4px 8px #ffffff;
 }
 
 .favoriteButton:hover {
   opacity: 0.8;
+  border-radius: 81px;
+  background: #ffffff;
+  box-shadow:
+    inset 5px 5px 13px #bdbdbd,
+    inset -5px -5px 13px #ffffff;
 }
