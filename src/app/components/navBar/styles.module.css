@@ -1,14 +1,26 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 30px;
+  align-items: center;
+  padding: 20px 30px;
   background-color: #ffe600;
-  color: rgb(0, 0, 0);
+  color: #000000;
+}
+
+.logoContainer {
+  flex: 0 0 auto;
+}
+
+.logo {
+  height: 40px;
+  object-fit: contain;
 }
 
 .links {
   display: flex;
   gap: 20px;
+  flex: 1 0 auto;
+  justify-content: flex-end;
 }
 
 .link {
@@ -41,7 +53,5 @@
 
 .disabled {
   pointer-events: none;
-  color: #a0a0a0;
   box-shadow: none;
-  background: #ffe600;
 }

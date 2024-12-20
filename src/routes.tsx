@@ -1,10 +1,14 @@
 import React from "react"
 import { createBrowserRouter, Outlet } from "react-router-dom"
 const CharacterList = React.lazy(() =>
-  delayedImport(import("./app/pages/characterList/CharacterList"), 2000),
+  delayedImport(import("./app/pages/characterList/CharacterList"), 3000),
 )
-const FavoriteList = React.lazy(() => import("./app/pages/favoriteList/FavoriteList"))
-const CharacterInfo = React.lazy(() => import("./app/pages/characterInfo/CharacterInfo"))
+const FavoriteList = React.lazy(
+  () => import("./app/pages/favoriteList/FavoriteList"),
+)
+const CharacterInfo = React.lazy(
+  () => import("./app/pages/characterInfo/CharacterInfo"),
+)
 import NavBar from "./app/components/navBar/NavBar"
 import { delayedImport } from "./utils/local-storage-util"
 import MessagePage from "./app/components/messagePage/MessagePage"
@@ -12,9 +16,7 @@ import MessagePage from "./app/components/messagePage/MessagePage"
 const Layout = () => (
   <>
     <NavBar />
-    <>
-      <Outlet />
-    </>
+    <Outlet />
   </>
 )
 

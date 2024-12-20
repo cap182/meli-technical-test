@@ -1,4 +1,3 @@
-/* Contenedor principal */
 .card {
   padding-bottom: 20px;
   text-align: center;
@@ -18,20 +17,17 @@
     -11px -11px 40px #ffffff;
 }
 
-/* Estilo del enlace */
 .cardLink {
   text-decoration: none;
   color: inherit;
 }
 
-/* Imagen del personaje */
 .characterImage {
   width: 100%;
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
 }
 
-/* Botón de favorito */
 .favoriteButton {
   color: red;
   border: 0px;
