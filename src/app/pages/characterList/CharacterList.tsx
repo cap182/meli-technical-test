@@ -6,14 +6,14 @@ import MessagePage from "../../components/messagePage/MessagePage"
 import styles from "./styles.module.css"
 import { MESSAGES } from "../../constants/constants"
 import SearchBar from "../../components/searchBar/SearchBar"
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Paginator from "../../components/paginator/Paginator"
 
 const CharacterList = () => {
   const [page, setPage] = useState(1)
   const [filters, setFilters] = useState({ name: "", species: "", status: "" })
 
   const { data, error, isLoading } = useGetCharactersQuery({ page, ...filters })
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [page])
@@ -44,23 +44,16 @@ const CharacterList = () => {
         ))}
       </div>
       <div className={styles.searchBarContainer}>
-        <div className={styles.paginationContainer}>
-          <button
-            className={styles.paginationButton}
-            disabled={page <= 1}
-            onClick={() => setPage(page - 1)}
-          >
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </button>
-          <span className={styles.pageIndicator}>{page}</span>
-          <button
-            className={styles.paginationButton}
-            disabled={!data?.info.next}
-            onClick={() => setPage(page + 1)}
-          >
-            <FontAwesomeIcon icon={faArrowRight} />
-          </button>
-        </div>
+        {data ? (
+          <Paginator
+            currentPage={page}
+            totalPages={data.info.pages}
+            hasNextPage={!!data.info.next}
+            onPrevious={() => setPage(prev => prev - 1)}
+            onNext={() => setPage(prev => prev + 1)}
+            onPageSelect={selectedPage => setPage(selectedPage)}
+          />
+        ) : null}
       </div>
     </>
   )

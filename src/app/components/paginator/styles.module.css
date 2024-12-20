@@ -1,0 +1,75 @@
+.paginationContainer {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 34px;
+  background: #ffffff;
+  box-shadow:
+    11px 11px 40px #bdbdbd,
+    -11px -11px 40px #ffffff;
+}
+
+.paginationButton {
+  border: 0px;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow:
+    3px 3px 6px #b3b3b3,
+    -3px -3px 6px #ffffff;
+  cursor: pointer;
+}
+
+.paginationButton:hover {
+  border-radius: 51px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow:
+    8px 8px 16px #d1d1d1,
+    -8px -8px 16px #ffffff;
+}
+
+.pageButton {
+  border: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background: #f0f0f0;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.pageButton:hover {
+  background: #e0e0e0;
+}
+
+.pageButton:focus {
+  outline: none;
+  background: #d0d0d0;
+}
+
+.activePage {
+  background: #ffffff;
+  color: #000;
+  font-weight: bold;
+}
+
+.separator {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .paginationContainer {
+    gap: 2px;
+  }
+}
