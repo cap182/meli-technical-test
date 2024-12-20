@@ -7,8 +7,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component"
 import placeholder from "./../../assets/placeholder.png"
 import styles from "./styles.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons"
-import { faHeart as faSolidHearth } from "@fortawesome/free-solid-svg-icons"
+import { faHeart, faFaceSmile } from "@fortawesome/free-regular-svg-icons"
+import { faQuestion, faSkull, faHeart as faSolidHearth } from "@fortawesome/free-solid-svg-icons"
 
 
 interface CharacterCardProps {
@@ -41,6 +41,12 @@ const CharacterCard = ({
     }
   }
 
+  const statusIcon = () =>{
+    if (status.toLowerCase()==="alive") return faFaceSmile
+    if (status.toLowerCase()==="dead") return faSkull
+    return faQuestion
+  }
+
   return (
     <div className={styles.card}>
       <Link to={`/character/${id}`} className={styles.cardLink}>
@@ -51,11 +57,12 @@ const CharacterCard = ({
           placeholderSrc={placeholder}
           className={styles.characterImage}
         />
-        <h3>{name}</h3>
-      </Link>
-      <p>
+        <FontAwesomeIcon className={styles.statusIcon} icon={statusIcon()} />
+        <h3 className={styles.characterName}>{name}</h3>
+      <p className={styles.characterStatus}>
         {status} - {species}
       </p>
+      </Link>
       <button
         onClick={toggleFavorite}
         className={`${styles.favoriteButton} ${

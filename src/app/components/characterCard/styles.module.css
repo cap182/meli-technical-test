@@ -1,12 +1,19 @@
 .card {
-  padding-bottom: 20px;
+  display: flex;
+  padding-bottom: 15px;
   text-align: center;
   width: 200px;
+  min-height: 320px;
+  max-height: 320px;
   border-radius: 35px;
   background: #ffffff;
   box-shadow:
     11px 11px 27px #bdbdbd,
     -11px -11px 27px #ffffff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -20,29 +27,51 @@
 .cardLink {
   text-decoration: none;
   color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .characterImage {
   width: 100%;
+  object-fit: cover;
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
 }
 
+h3 {
+  font-size: 1rem;
+  margin: 10px 0 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #555;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .favoriteButton {
   color: red;
-  border: 0px;
-  height: 35px;
-  width: 35px;
-  border-radius: 40px;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
   box-shadow:
     3px 3px 6px #b3b3b3,
     -3px -3px 6px #ffffff;
+  cursor: pointer;
 }
 
 .favoriteButton.isFavorite {
   color: red;
-  border-radius: 40px;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
   box-shadow:
     4px 4px 8px #b3b3b3,
@@ -51,9 +80,22 @@
 
 .favoriteButton:hover {
   opacity: 0.8;
-  border-radius: 81px;
   background: #ffffff;
   box-shadow:
     inset 5px 5px 13px #bdbdbd,
     inset -5px -5px 13px #ffffff;
+}
+
+.characterName{
+  margin-bottom: 0px;
+}
+.characterStatus{
+  color: #555;
+  font-size: small;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.statusIcon{
+  margin-top: 10px;
 }
