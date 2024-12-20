@@ -19,7 +19,8 @@ const CharacterList = () => {
   }, [page])
 
   if (isLoading) return <LoadingScreen />
-  if (error) return <MessagePage message={MESSAGES.ERROR.GENERIC} />
+  if (error && error && "status" in error && error.status !== 404)
+    return <MessagePage message={MESSAGES.ERROR.GENERIC} />
 
   return (
     <>
@@ -27,34 +28,40 @@ const CharacterList = () => {
         <SearchBar
           onSearch={newFilters => {
             setFilters(newFilters)
-            setPage(1) // Resetear la paginación al buscar
+            setPage(1)
           }}
         />
       </div>
-      <div className={styles.cardsContainer}>
-        {data?.results.map(character => (
-          <CharacterCard
-            key={character.id}
-            id={character.id}
-            name={character.name}
-            status={character.status}
-            species={character.species}
-            image={character.image}
-          />
-        ))}
-      </div>
-      <div className={styles.searchBarContainer}>
-        {data ? (
-          <Paginator
-            currentPage={page}
-            totalPages={data.info.pages}
-            hasNextPage={!!data.info.next}
-            onPrevious={() => setPage(prev => prev - 1)}
-            onNext={() => setPage(prev => prev + 1)}
-            onPageSelect={selectedPage => setPage(selectedPage)}
-          />
-        ) : null}
-      </div>
+      {error && "status" in error && error.status === 404 ? (
+        <MessagePage message={MESSAGES.ERROR.CHARACTER_NOT_FOUND} />
+      ) : (
+        <div>
+          <div className={styles.cardsContainer}>
+            {data?.results.map(character => (
+              <CharacterCard
+                key={character.id}
+                id={character.id}
+                name={character.name}
+                status={character.status}
+                species={character.species}
+                image={character.image}
+              />
+            ))}
+          </div>
+          <div className={styles.searchBarContainer}>
+            {data ? (
+              <Paginator
+                currentPage={page}
+                totalPages={data.info.pages}
+                hasNextPage={!!data.info.next}
+                onPrevious={() => setPage(prev => prev - 1)}
+                onNext={() => setPage(prev => prev + 1)}
+                onPageSelect={selectedPage => setPage(selectedPage)}
+              />
+            ) : null}
+          </div>
+        </div>
+      )}
     </>
   )
 }
