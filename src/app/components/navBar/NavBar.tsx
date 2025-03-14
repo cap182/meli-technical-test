@@ -4,6 +4,7 @@ import styles from "./styles.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons"
 import logo from "./../../assets/rick-logo.svg"
+import { faBook } from "@fortawesome/free-solid-svg-icons"
 
 const NavBar = () => {
   const location = useLocation()
@@ -27,6 +28,13 @@ const NavBar = () => {
         >
           <FontAwesomeIcon icon={faHeart} />
           <span className={styles.linkText}>Favorites</span>
+        </Link>
+        <Link
+          to="/history"
+          className={`${styles.link} ${location.pathname === "/history" ? styles.disabled : ""}`}
+        >
+          <FontAwesomeIcon icon={faBook} />
+          <span className={styles.linkText}>History</span>
         </Link>
       </div>
     </nav>

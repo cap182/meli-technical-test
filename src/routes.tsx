@@ -12,6 +12,7 @@ const CharacterInfo = React.lazy(
 import NavBar from "./app/components/navBar/NavBar"
 import { delayedImport } from "./utils/local-storage-util"
 import MessagePage from "./app/components/messagePage/MessagePage"
+import HistoryList from "./app/pages/history/HistoryList"
 
 const Layout = () => (
   <>
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <CharacterList /> },
       { path: "/favorites", element: <FavoriteList /> },
+      { path: "/history", element: <HistoryList /> },
       { path: "/character/:id", element: <CharacterInfo /> },
       { path: "*", element: <MessagePage message="404 - Page Not Found" /> },
     ],

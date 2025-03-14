@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { RootState } from "../../store"
+import { AppDispatch, RootState } from "../../store"
 import {
   useGetCharacterByIdQuery,
   useGetEpisodesByIdsQuery,
@@ -13,18 +13,22 @@ import MessagePage from "../../components/messagePage/MessagePage"
 import styles from "./styles.module.css"
 import { MESSAGES } from "../../constants/constants"
 import StatusInfo from "../../components/statusInfo/StatusInfo"
+import { addHistory } from "../../slices/historySlice"
 
 function CharacterInfo() {
+  const dispatch = useDispatch<AppDispatch>()
   const { id } = useParams<{ id: string }>()
-
   const characterId = id ? parseInt(id, 10) : 0
-
+  
   const cachedCharacter = useSelector((state: RootState) => {
     return findCharacterInResults(
       state.rickAndMortyApi.queries as QueriesState,
       characterId,
     )
   })
+  console.log('characterInfo');
+  
+  dispatch(addHistory(characterId))
 
   const {
     data: character,

@@ -7,16 +7,31 @@ import styles from "./styles.module.css"
 import { MESSAGES } from "../../constants/constants"
 import SearchBar from "../../components/searchBar/SearchBar"
 import Paginator from "../../components/paginator/Paginator"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "../../store"
+import { changeFilters } from "../../slices/filtersSlice"
 
 const CharacterList = () => {
-  const [page, setPage] = useState(1)
-  const [filters, setFilters] = useState({ name: "", species: "", status: "" })
+  const dispatch = useDispatch<AppDispatch>()
+  const actualFilters = useSelector((state: RootState) => state.filters)
 
-  const { data, error, isLoading } = useGetCharactersQuery({ page, ...filters })
+  const [page, setPage] = useState(actualFilters.page)
+  // const [filters, setFilters] = useState({
+  //   name: actualFilters.name,
+  //   species: actualFilters.species,
+  //   status: actualFilters.status,
+  // })
 
+  const { data, error, isLoading } = useGetCharactersQuery({ ...actualFilters })
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
+    dispatch(changeFilters({ ...actualFilters, page: page }))
   }, [page])
+
+  // useEffect(() => {
+  //   setPage(1)
+  // }, [actualFilters])
 
   if (isLoading) return <LoadingScreen />
   if (error && error && "status" in error && error.status !== 404)
@@ -27,7 +42,7 @@ const CharacterList = () => {
       <div className={styles.searchBarContainer}>
         <SearchBar
           onSearch={newFilters => {
-            setFilters(newFilters)
+            // dispatch(changeFilters({ ...newFilters, page: 1 }))
             setPage(1)
           }}
         />

@@ -32,10 +32,20 @@ export interface CharactersResponse {
 export interface FavoritesList {
   favoriteIds: number[]
 }
+export interface HistoryList {
+  historyIds: number[]
+}
 
 export interface Episode {
     id: number;
     name: string;
     air_date: string;
     episode: string;
+  }
+
+  export interface actualFilter {
+    page: number;
+    name: string; 
+    species: string;
+    status: string; 
   }

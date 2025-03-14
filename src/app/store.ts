@@ -4,8 +4,10 @@ import { setupListeners } from "@reduxjs/toolkit/query"
 import { loadState, saveState } from "../utils/local-storage-util"
 import { rickAndMortyApiSlice } from "./slices/rickAndMortyApiSlice"
 import { favoritesSlice } from "./slices/favoritesSlice"
+import { filtersSlice } from "./slices/filtersSlice"
+import { historySlice } from "./slices/historySlice"
 
-const rootReducer = combineSlices(rickAndMortyApiSlice, favoritesSlice)
+const rootReducer = combineSlices(rickAndMortyApiSlice, favoritesSlice, filtersSlice, historySlice)
 
 export type RootState = ReturnType<typeof rootReducer>
 
@@ -26,6 +28,8 @@ setupListeners(store.dispatch)
 store.subscribe(() => {
   saveState({
     favorites: store.getState().favorites,
+    history: store.getState().history,
+    filters: store.getState().filters,
     rickAndMortyApi: store.getState().rickAndMortyApi,
   })
 })

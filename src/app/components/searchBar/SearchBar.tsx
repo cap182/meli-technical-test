@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { changeFilters } from "../../slices/filtersSlice";
 
 
 interface SearchBarProps {
@@ -9,12 +12,17 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ onSearch }: SearchBarProps) => {
-  const [name, setName] = useState("");
-  const [species, setSpecies] = useState("");
-  const [status, setStatus] = useState("");
+
+  const actualFilters = useSelector((state: RootState) => state.filters)
+  const dispatch = useDispatch<AppDispatch>()
+
+  const [name, setName] = useState(actualFilters.name);
+  const [species, setSpecies] = useState(actualFilters.species);
+  const [status, setStatus] = useState(actualFilters.status);
 
   const handleSearch = () => {
-    onSearch({ name, species, status });
+    // onSearch({ actualFilters.name, actualFilters.species, actualFilters.status });
+    dispatch(changeFilters({ name, species, status, page:1 }));
   };
 
   return (
@@ -23,7 +31,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
         type="text"
         placeholder="Name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)} 
         
       />
       <input
