@@ -22,7 +22,7 @@ const FavoriteList = () => {
 
   const { data, isLoading, error } = useGetCharactersByIdsQuery(
      favoriteIds, {
-      skip: !favoriteIds.length,
+      skip: Object.keys(favoriteIds).length === 0,
      }
   )
 
@@ -30,7 +30,7 @@ const FavoriteList = () => {
 
   if (error) return <MessagePage message={MESSAGES.ERROR.GENERIC} />
 
-  if (favoriteIds.length === 0) {
+  if (Object.keys(favoriteIds).length === 0) {
     return <MessagePage message={MESSAGES.EMPTY_FAVORITES} />
   }
 

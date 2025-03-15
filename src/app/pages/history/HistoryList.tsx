@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
 import CharacterCard from "../../components/characterCard/CharacterCard"
@@ -7,7 +6,6 @@ import LoadingScreen from "../../components/loadingScreen/LoadingScreen"
 import MessagePage from "../../components/messagePage/MessagePage"
 import styles from "./styles.module.css"
 import { MESSAGES } from "../../constants/constants"
-import SearchBar from "../../components/searchBar/SearchBar"
 
 const HistoryList = () => {
   const historyIds = useSelector(
@@ -15,7 +13,10 @@ const HistoryList = () => {
   )
 
   const { data, isLoading, error } = useGetCharactersByIdsQuery(
-     historyIds, {
+    historyIds.reduce((acc: { [key: number]: boolean }, elemento) => {
+      acc[elemento] = true;
+      return acc;
+    }, {}), {
       skip: !historyIds.length,
      }
   )

@@ -30,7 +30,7 @@ export interface CharactersResponse {
 }
 
 export interface FavoritesList {
-  favoriteIds: number[]
+  favoriteIds: Record<number, boolean>
 }
 export interface HistoryList {
   historyIds: number[]

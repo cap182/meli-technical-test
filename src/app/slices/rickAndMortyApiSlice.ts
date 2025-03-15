@@ -21,8 +21,13 @@ export const rickAndMortyApiSlice = createApi({
         return `/character?${params.toString()}`
       },
     }),
-    getCharactersByIds: builder.query<Character[], number[]>({
-      query: ids => `/character/${ids.join(",")}`,
+    getCharactersByIds: builder.query<Character[], Record<number, boolean>>({
+      query: ids => {
+        const idArray = Object.keys(ids).map(Number);
+        console.log('ids',idArray);
+        
+        return `/character/${idArray.join(",")}`;
+      },
       transformResponse: (response: Character | Character[]) =>
         Array.isArray(response) ? response : [response],
     }),

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { FavoritesList } from "../interfaces/characterInterfaces"
 
 const initialState: FavoritesList = {
-  favoriteIds: [],
+  favoriteIds: {},
 }
 
 export const favoritesSlice = createSlice({
@@ -10,10 +10,10 @@ export const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addFavorite: (state, action: PayloadAction<number>) => {
-      state.favoriteIds.push(action.payload)
+      state.favoriteIds[action.payload] = true;
     },
     removeFavorite: (state, action: PayloadAction<number>) => {
-      state.favoriteIds = state.favoriteIds.filter(id => id !== action.payload)
+      delete state.favoriteIds[action.payload];
     },
   },
 })

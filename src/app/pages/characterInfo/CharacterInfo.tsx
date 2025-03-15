@@ -1,11 +1,8 @@
-import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect, useState } from "react"
+import { shallowEqual, useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { AppDispatch, RootState } from "../../store"
-import {
-  useGetCharacterByIdQuery,
-  useGetEpisodesByIdsQuery,
-} from "../../slices/rickAndMortyApiSlice"
+import { useGetCharacterByIdQuery } from "../../slices/rickAndMortyApiSlice"
 import { findCharacterInResults } from "../../../utils/characterUtils"
 import LoadingScreen from "../../components/loadingScreen/LoadingScreen"
 import { QueriesState } from "../../interfaces/queryInterfaces"
@@ -14,21 +11,26 @@ import styles from "./styles.module.css"
 import { MESSAGES } from "../../constants/constants"
 import StatusInfo from "../../components/statusInfo/StatusInfo"
 import { addHistory } from "../../slices/historySlice"
+import EpisodeList from "../../components/episodeList/EpisodeList"
 
 function CharacterInfo() {
   const dispatch = useDispatch<AppDispatch>()
   const { id } = useParams<{ id: string }>()
   const characterId = id ? parseInt(id, 10) : 0
-  
+
   const cachedCharacter = useSelector((state: RootState) => {
     return findCharacterInResults(
       state.rickAndMortyApi.queries as QueriesState,
       characterId,
     )
-  })
-  console.log('characterInfo');
-  
-  dispatch(addHistory(characterId))
+  }, shallowEqual)
+  console.log("characterInfo")
+
+  useEffect(() => {
+    console.log("addHistory");
+    
+    dispatch(addHistory(characterId))
+  }, [characterId, dispatch])
 
   const {
     data: character,
@@ -46,19 +48,6 @@ function CharacterInfo() {
   const episodeIds = characterData?.episode
     .map((url: string) => url.split("/").pop())
     .join(",")
-
-  const {
-    data: episodes,
-    isLoading: episodesLoading,
-    error: episodesError,
-  } = useGetEpisodesByIdsQuery(episodeIds || "", {
-    skip: !episodeIds,
-    refetchOnMountOrArgChange: false,
-    refetchOnFocus: false,
-    refetchOnReconnect: false,
-  })
-
-  const [showEpisodes, setShowEpisodes] = useState(false)
 
   if (isLoading) return <LoadingScreen />
   if (error) {
@@ -110,32 +99,7 @@ function CharacterInfo() {
             </p>
           </div>
         </div>
-        <div className={styles.episodes}>
-          <h2
-            className={styles.episodesTitle}
-            onClick={() => setShowEpisodes(prev => !prev)}
-          >
-            Episodes {showEpisodes ? "-" : "+"}
-          </h2>
-          {showEpisodes && (
-            <div className={styles.episodesBox}>
-              {episodesLoading && <LoadingScreen />}
-              {episodesError && (
-                <MessagePage message={MESSAGES.ERROR.GENERIC} />
-              )}
-              {!episodesLoading && episodes && (
-                <ul className={styles.episodesList}>
-                  {episodes.map(episode => (
-                    <li key={episode.id}>
-                      <strong>{episode.name}</strong> - {episode.episode} (
-                      {episode.air_date})
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          )}
-        </div>
+        <EpisodeList episodeIds={episodeIds} />
       </div>
     </div>
   )

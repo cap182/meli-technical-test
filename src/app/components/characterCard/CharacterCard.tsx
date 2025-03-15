@@ -32,7 +32,7 @@ const CharacterCard = ({
     (state: RootState) => state.favorites.favoriteIds,
   )
 
-  const isFavorite = favoriteIds.includes(id)
+  const isFavorite = favoriteIds[id] === true;
 
   const toggleFavorite = () => {
     if (isFavorite) {
