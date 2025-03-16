@@ -4,7 +4,7 @@ import CharacterCard from "../../components/characterCard/CharacterCard"
 import LoadingScreen from "../../components/loadingScreen/LoadingScreen"
 import MessagePage from "../../components/messagePage/MessagePage"
 import styles from "./styles.module.css"
-import { MESSAGES } from "../../constants/constants"
+import { BASE_URLS, MESSAGES } from "../../constants/constants"
 import SearchBar from "../../components/searchBar/SearchBar"
 import Paginator from "../../components/paginator/Paginator"
 import { useDispatch, useSelector } from "react-redux"
@@ -71,7 +71,7 @@ const CharacterList = () => {
                 hasNextPage={!!data.info.next}
                 onPrevious={() => setPage(prev => prev - 1)}
                 onNext={() => setPage(prev => prev + 1)}
-                onPageSelect={selectedPage => setPage(selectedPage)}
+                onPageSelect={selectedPage => selectedPage <= data.info.pages ? setPage(selectedPage): null}
               />
             ) : null}
           </div>

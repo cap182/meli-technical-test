@@ -1,4 +1,10 @@
+.paginationsContainer {
+  display: flex;
+  flex-direction: column;
+}
 .paginationContainer {
+  align-self: anchor-center;
+  width: fit-content;
   display: flex;
   gap: 10px;
   padding: 15px;
@@ -12,6 +18,24 @@
     -11px -11px 40px #ffffff;
 }
 
+.pageInput {
+  border-radius: 15px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow:
+    3px 3px 7px #e0e0e0,
+    -3px -3px 7px #ffffff;
+  border: none;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+.pageInput:hover {
+  background: #ffffff;
+  box-shadow:
+    inset 3px 3px 7px #ebebeb,
+    inset -3px -3px 7px #ffffff;
+}
 .paginationButton {
   border: 0px;
   height: 40px;
